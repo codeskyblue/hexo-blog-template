@@ -1,0 +1,51 @@
+{
+  "name": "codeskyblue-blog",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "sync": "yuque-hexo clean && dotenv -e .env yuque-hexo sync",
+    "build": "hexo generate",
+    "clean": "hexo clean",
+    "deploy": "hexo deploy",
+    "server": "hexo server"
+  },
+  "hexo": {
+    "version": "6.3.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "hexo": "^6.3.0",
+    "hexo-generator-archive": "^2.0.0",
+    "hexo-generator-category": "^2.0.0",
+    "hexo-generator-index": "^3.0.0",
+    "hexo-generator-tag": "^2.0.0",
+    "hexo-renderer-ejs": "^2.0.0",
+    "hexo-renderer-marked": "^6.0.0",
+    "hexo-renderer-stylus": "^2.1.0",
+    "hexo-server": "^3.0.0",
+    "hexo-theme-landscape": "^0.0.3",
+    "yuque-hexo": "^1.9.5"
+  },
+  "yuqueConfig": {
+    "postPath": "source/_posts/yuque",
+    "cachePath": "yuque.json",
+    "mdNameFormat": "title",
+    "adapter": "hexo",
+    "concurrency": 5,
+    "baseUrl": "https://www.yuque.com/api/v2",
+    "login": "codeskyblue",
+    "repo": "blog",
+    "onlyPublished": false,
+    "onlyPublic": false,
+    "lastGeneratePath": "lastGeneratePath.log",
+    "imgCdn": {
+      "enabled": true,
+      "concurrency": 0,
+      "imageBed": "qiniu",
+      "host": "//rt9lv4f0y.hd-bkt.clouddn.com",
+      "bucket": "blog71",
+      "region": "",
+      "prefixKey": "blog"
+    }
+  }
+}
