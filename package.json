@@ -39,7 +39,7 @@
     "onlyPublic": false,
     "lastGeneratePath": "lastGeneratePath.log",
     "imgCdn": {
-      "enabled": true,
+      "enabled": false,
       "concurrency": 0,
       "imageBed": "qiniu",
       "host": "//rt9lv4f0y.hd-bkt.clouddn.com",
