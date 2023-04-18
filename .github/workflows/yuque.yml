@@ -42,4 +42,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           force-add: 'true'
           files: source/_posts/
+          push-branch: 'master'
+          commit-message: 'sync yuque'
         
