@@ -1,13 +1,11 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: YuqueSync
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
-    branches: [ "master" ]
-  pull_request:
     branches: [ "master" ]
   schedule:
     - cron: '0 2 * * *'
@@ -34,7 +32,7 @@ jobs:
       - name: Sync with Yuque
         run: |
           npm install
-          yuque-hexo clean && yuque-hexo sync
+          npm run sync
       - name: Git Commit and Push
         uses: github-actions-x/commit@v2.9
         with:
