@@ -40,5 +40,6 @@ jobs:
         uses: github-actions-x/commit@v2.9
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          files: .
+          force-add: 'true'
+          files: source/_posts/
         
