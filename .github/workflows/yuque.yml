@@ -4,12 +4,12 @@ name: YuqueSync
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "master" branch
-  push:
-    branches: [ "master" ]
   schedule:
     - cron: '0 2 * * *'
-
+  repository_dispatch:
+    types:
+    	# 这里的值需要和下文的云函数的event_type保持一致
+      - start
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
