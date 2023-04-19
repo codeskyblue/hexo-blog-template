@@ -40,13 +40,13 @@
     "onlyPublic": false,
     "lastGeneratePath": "lastGeneratePath.log",
     "imgCdn": {
-      "enabled": false,
+      "enabled": true,
       "concurrency": 0,
-      "imageBed": "qiniu",
+      "imageBed": "local",
       "host": "//rt9lv4f0y.hd-bkt.clouddn.com",
       "bucket": "blog71",
       "region": "",
-      "prefixKey": "blog"
+      "prefixKey": "images"
     }
   }
 }
