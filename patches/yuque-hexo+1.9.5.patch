@@ -1,0 +1,72 @@
+diff --git a/node_modules/yuque-hexo/util/imageBeds/index.js b/node_modules/yuque-hexo/util/imageBeds/index.js
+index 4af4909..9cac9a3 100644
+--- a/node_modules/yuque-hexo/util/imageBeds/index.js
++++ b/node_modules/yuque-hexo/util/imageBeds/index.js
+@@ -5,10 +5,11 @@ const OssClient = require('./oss');
+ const QiniuClient = require('./qiniu');
+ const UPClient = require('./upyun');
+ const GithubClient = require('./github');
++const LocalClient = require("./local");
+ const out = require('../../lib/out');
+ 
+ // 目前已适配图床列表
+-const imageBedList = [ 'qiniu', 'cos', 'oss', 'upyun', 'github' ];
++const imageBedList = [ 'qiniu', 'cos', 'oss', 'upyun', 'github', 'local' ];
+ 
+ class ImageBeds {
+   constructor(config) {
+@@ -45,6 +46,8 @@ class ImageBeds {
+         return UPClient.getInstance(this.config);
+       case 'github':
+         return GithubClient.getInstance(this.config);
++      case 'local':
++        return LocalClient.getInstance(this.config);
+       default:
+         return QiniuClient.getInstance(this.config);
+     }
+diff --git a/node_modules/yuque-hexo/util/imageBeds/local.js b/node_modules/yuque-hexo/util/imageBeds/local.js
+new file mode 100644
+index 0000000..c3b216d
+--- /dev/null
++++ b/node_modules/yuque-hexo/util/imageBeds/local.js
+@@ -0,0 +1,39 @@
++'use strict';
++
++const out = require('../../lib/out');
++const fs = require("fs");
++
++class LocalClient {
++    constructor(config) {
++        this.config = config;
++    }
++
++    static getInstance(config) {
++        if (!this.instance) {
++            this.instance = new LocalClient(config);
++        }
++        return this.instance;
++    }
++
++    async hasImage(fileName) {
++        try {
++            const cwd = process.cwd();
++            const imgDir = `${cwd}/source/images`
++            const imgUrl = `/images/${fileName}`
++            if (fs.existsSync(`${imgDir}/${fileName}`)) {
++                return imgUrl
++            }
++        } catch(e) {
++            return '';
++        }
++    }
++
++    async uploadImg(imgBuffer, fileName) {
++        const imgPath = `${process.cwd()}/source/images/${fileName}`
++        const imgUrl = `/images/${fileName}`
++        fs.writeFileSync(imgPath, imgBuffer)
++        return imgUrl
++    }
++}
++
++module.exports = LocalClient;
+\ No newline at end of file
